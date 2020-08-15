@@ -1,9 +1,11 @@
 (ns nifty.priority-map
   #?(:clj
-     (:import [clojure.lang IPersistentStack IPersistentMap IPersistentCollection]
+     (:import [clojure.lang IPersistentStack IPersistentMap
+               IPersistentCollection]
               [java.io Writer])))
 
 #?(:clj (set! *warn-on-reflection* true))
+#?(:clj (set! *unchecked-math* :warn-on-boxed))
 
 (defprotocol ^:no-doc IHeapNode
   (get-left [this] "Get the left child node")
@@ -12,7 +14,7 @@
   (add-child [this node] "Add a child to a node"))
 
 (deftype ^:no-doc HeapNode [item
-                            priority
+                            ^long priority
                             ^:unsynchronized-mutable left
                             ^:unsynchronized-mutable right]
   IHeapNode
