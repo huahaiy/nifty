@@ -1,11 +1,7 @@
 (ns nifty.priority-map
   #?(:clj
-     (:import [clojure.lang IPersistentStack IPersistentMap
-               IPersistentCollection]
+     (:import [clojure.lang IPersistentStack IPersistentMap]
               [java.io Writer])))
-
-#?(:clj (set! *warn-on-reflection* true))
-#?(:clj (set! *unchecked-math* :warn-on-boxed))
 
 (defprotocol ^:no-doc IHeapNode
   (get-left [this] "Get the left child node")
@@ -60,7 +56,8 @@
 #?(:clj
    (deftype PriorityMap [^:unsynchronized-mutable ^HeapNode heap
                          ^:unsynchronized-mutable map]
-     IPersistentCollection
+     IPersistentMap
+     (seq [_] (seq map))
      (count [_] (count map))
      (cons [this e]
        (let [[item priority] e]
@@ -72,8 +69,6 @@
        (set! map {})
        this)
      (equiv [this o] (identical? this o))
-
-     IPersistentMap
      (assoc [this item priority]
        (set! map (assoc map item priority))
        (set! heap (insert heap item priority))
@@ -82,8 +77,7 @@
      (equals [this o] (identical? this o))
      (containsKey [_ item] (contains? map item))
      (entryAt [_ k] (find map k))
-     (seq [_] (seq map))
-     (without [this item] (dissoc map item) this)
+     (without [this item] (throw (ex-info "Not implemented" {})))
 
      IPersistentStack
      (peek [_] [(.-item heap) (.-priority heap)])
@@ -100,6 +94,9 @@
      ISeqable
      (-seq [_] (seq map))
 
+     ICounted
+     (-count [this] (count (seq this)))
+
      ICollection
      (-conj [this e]
        (let [[item priority] e]
@@ -115,7 +112,7 @@
      (-contains-key? [_ item] (contains? map item))
 
      IMap
-     (-dissoc [this item] (dissoc map item) this)
+     (-dissoc [this item] (throw (ex-info "Not implemented" {})))
 
      IStack
      (-peek [_] [(.-item heap) (.-priority heap)])
@@ -126,11 +123,8 @@
          this))))
 
 (defn priority-map
-  "A priority queue that also functions as a map.
-  Backed by a pairing heap implementation and a regular map.
-
-  NB. We do not implement `decrease-key` for the pairing heap,
-  instead just insert the item again with a new priority."
+  "Create a priority map, which is a priority queue that also functions as a
+  map."
   ([]
    (->PriorityMap nil {}))
   ([& keyvals]

@@ -1,5 +1,5 @@
-(defproject nifty "0.1.0"
-  :description "Some useful data structures"
+(defproject huahaiy/nifty "0.1.0"
+  :description "Some useful data structures for Clojure and Clojurescript"
   :url "https://github.com/huahaiy/nifty"
   :lein-release {:deploy-via :clojars}
   :deploy-repositories [["releases" :clojars]]
@@ -57,4 +57,7 @@
                              [org.clojure/test.check "1.1.0"]
                              [cider/piggieback "0.5.0"]]
               :source-paths ["src" "test" "dev"]
-              :repl-options {:nrepl-middleware [cider.piggieback/wrap-cljs-repl]}}})
+              :repl-options {:nrepl-middleware [cider.piggieback/wrap-cljs-repl]}}}
+  :global-vars {*print-namespace-maps* false
+                *unchecked-math* :warn-on-boxed
+                *warn-on-reflection*   true})
