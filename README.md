@@ -6,11 +6,11 @@ These data structures are intended to be used in program hotspots, so the design
 
 ##### Table of Contents
 
-[Priority Map](#priority-map)
-[Disjoint Set (Union-find)](#disjoint-set)
+* [Priority Map](#priority-map)
+* [Disjoint Set (Union-find)](#disjoint-set)
 
-<a name="priority-map"/>
 ## Priority Map
+<a name="priority-map"/>
 
 This is a [priority queue](https://en.wikipedia.org/wiki/Priority_queue) that
 also functions as a map.
