@@ -1,6 +1,6 @@
 # nifty
 
-[![Clojars Project](https://img.shields.io/clojars/v/huahaiy/nifty.svg)](https://clojars.org/huahaiy/nifty)
+[![Clojars Project](https://img.shields.io/clojars/v/huahaiy/nifty.svg?color=sucess)](https://clojars.org/huahaiy/nifty)
 
 A collection of useful data structures for Clojure and Clojurescript.
 
