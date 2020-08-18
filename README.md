@@ -120,4 +120,4 @@ a
 ```
 
 We implements path compression and union by rank optimizations. The amortized
-time complexity is O(m`a`(n)) for m union-find operations on n elements, which is optimal, where `a` is inverse Ackermann function.
+time complexity is O(m`a`(n)) for m union-find operations on n elements, which is optimal, where `a` is inverse Ackermann function, essentially in constant time.
