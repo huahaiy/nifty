@@ -1,5 +1,7 @@
 # nifty
 
+[![Clojars Project](https://img.shields.io/clojars/v/huahaiy/nifty.svg)](https://clojars.org/huahaiy/nifty)
+
 A collection of useful data structures for Clojure and Clojurescript.
 
 These data structures are intended to be used in program hotspots, so the design favors performance over immutable data semantics. That is to say, these data structures are mutalbe, though familar Clojure collection protocols are implemented.

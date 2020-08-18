@@ -59,7 +59,7 @@
      given value"))
 
 #?(:clj
-   (deftype DisjointSet [^:unsynchronized-mutable elements]
+   (deftype ^:no-doc DisjointSet [^:unsynchronized-mutable elements]
      IPersistentSet
      (seq [_]
        (map key (filter (comp canonical? val) elements)))
@@ -129,7 +129,7 @@
        (set ((sets this) (canonical this v)))))
 
    :cljs
-   (deftype DisjointSet [^:mutable elements]
+   (deftype ^:no-doc DisjointSet [^:mutable elements]
      Object
      (equiv [this o]
        (identical? this o))

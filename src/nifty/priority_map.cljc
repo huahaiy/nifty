@@ -54,7 +54,7 @@
       (merge-nodes (merge-nodes a b) (two-pass n)))))
 
 #?(:clj
-   (deftype PriorityMap [^:unsynchronized-mutable ^HeapNode heap
+   (deftype ^:no-doc PriorityMap [^:unsynchronized-mutable ^HeapNode heap
                          ^:unsynchronized-mutable map]
      IPersistentMap
      (seq [_] (seq map))
@@ -88,7 +88,7 @@
          this)))
 
    :cljs
-   (deftype PriorityMap [^:mutable ^HeapNode heap
+   (deftype ^:no-doc PriorityMap [^:mutable ^HeapNode heap
                          ^:mutable map]
 
      ISeqable
